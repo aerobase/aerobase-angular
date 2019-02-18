@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
+import { AerobaseService, AerobaseAuthGuard } from 'aerobase-angular';
 
 @Injectable()
-export class AppAuthGuard extends KeycloakAuthGuard {
-  constructor(protected router: Router, protected keycloakAngular: KeycloakService) {
-    super(router, keycloakAngular);
+export class AppAuthGuard extends AerobaseAuthGuard {
+  constructor(protected router: Router, protected aerobaseAngular: AerobaseService) {
+    super(router, aerobaseAngular);
   }
 
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
       if (!this.authenticated) {
-        this.keycloakAngular.login();
+        this.aerobaseAngular.login();
         return;
       }
 

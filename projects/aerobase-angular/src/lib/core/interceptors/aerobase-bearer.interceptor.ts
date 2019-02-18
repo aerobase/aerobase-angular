@@ -3,7 +3,7 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 import { Injectable } from '@angular/core';
@@ -18,27 +18,27 @@ import {
 import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { KeycloakService } from '../services/keycloak.service';
+import { AerobaseService } from '../services/aerobase.service';
 
 /**
  * This interceptor includes the bearer by default in all HttpClient requests.
  *
  * If you need to exclude some URLs from adding the bearer, please, take a look
- * at the {@link KeycloakOptions} bearerExcludedUrls property.
+ * at the {@link AerobaseOptions} bearerExcludedUrls property.
  */
 @Injectable()
-export class KeycloakBearerInterceptor implements HttpInterceptor {
+export class AerobaseBearerInterceptor implements HttpInterceptor {
   private excludedUrlsRegex: RegExp[];
 
   /**
-   * KeycloakBearerInterceptor constructor.
+   * AerobaseBearerInterceptor constructor.
    *
-   * @param keycloak - Injected KeycloakService instance.
+   * @param aerobase - Injected AerobaseService instance.
    */
-  constructor(private keycloak: KeycloakService) {}
+  constructor(private aerobase: AerobaseService) {}
 
   private loadExcludedUrlsRegex() {
-    const excludedUrls: string[] = this.keycloak.bearerExcludedUrls;
+    const excludedUrls: string[] = this.aerobase.bearerExcludedUrls;
     this.excludedUrlsRegex = excludedUrls.map(urlPattern => new RegExp(urlPattern, 'i')) || [];
   }
 
@@ -50,8 +50,8 @@ export class KeycloakBearerInterceptor implements HttpInterceptor {
    * @param next
    */
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // If keycloak service is not initialized yet, or the interceptor should not be execute
-    if (!this.keycloak || !this.keycloak.enableBearerInterceptor) {
+    // If aerobase service is not initialized yet, or the interceptor should not be execute
+    if (!this.aerobase || !this.aerobase.enableBearerInterceptor) {
       return next.handle(req);
     }
 
@@ -65,7 +65,7 @@ export class KeycloakBearerInterceptor implements HttpInterceptor {
       return next.handle(req);
     }
 
-    return this.keycloak.addTokenToHeader(req.headers).pipe(
+    return this.aerobase.addTokenToHeader(req.headers).pipe(
       mergeMap(headersWithBearer => {
         const kcReq = req.clone({ headers: headersWithBearer });
         return next.handle(kcReq);

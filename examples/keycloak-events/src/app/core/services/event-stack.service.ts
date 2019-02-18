@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { KeycloakEvent } from 'keycloak-angular';
+import { AerobaseEvent } from 'aerobase-angular';
 import { Subject, Observable } from 'rxjs';
 
-export type EventItem = { _id: number; event: KeycloakEvent; timestamp: number };
+export type EventItem = { _id: number; event: AerobaseEvent; timestamp: number };
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class EventStackService {
     this._eventStack.splice(idx, 1);
   }
 
-  public triggerEvent(event: KeycloakEvent) {
+  public triggerEvent(event: AerobaseEvent) {
     this._nextId += 1;
 
     this._eventStack.push({

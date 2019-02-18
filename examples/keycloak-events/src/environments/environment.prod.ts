@@ -1,14 +1,14 @@
-import { KeycloakConfig } from 'keycloak-angular';
+import { AerobaseConfig } from 'aerobase-angular';
 
-// Add here your keycloak setup infos
-let keycloakConfig: KeycloakConfig = {
-  url: 'KEYCLOAK-INSTANCE-URL',
-  realm: 'REALM-NAME',
-  clientId: 'CLIENT-ID-NAME'
+// Add here your aerobase setup infos
+let aerobaseConfig: AerobaseConfig = {
+  url: 'https://example.aerobase.io/auth/',
+  realm: 'example',
+  clientId: 'example-client'
 };
 
 export const environment = {
   production: true,
   apis: { countries: 'https://restcountries.eu/rest/v2/' },
-  keycloak: keycloakConfig
+  aerobase: aerobaseConfig
 };

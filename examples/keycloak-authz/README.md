@@ -1,1 +1,1 @@
-# keycloak authz example
+# aerobase authz example

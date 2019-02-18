@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ClarityModule } from '@clr/angular';
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { AerobaseAngularModule, AerobaseService } from 'aerobase-angular';
 
 import { AppComponent, HeroesComponent, HomeComponent } from './components';
 import { HeroesService } from './services';
@@ -16,7 +16,7 @@ import { initializer } from './utils/app-init';
     BrowserModule,
     HttpClientModule,
     ClarityModule,
-    KeycloakAngularModule,
+    AerobaseAngularModule,
     AppRoutingModule
   ],
   providers: [
@@ -25,7 +25,7 @@ import { initializer } from './utils/app-init';
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
-      deps: [KeycloakService]
+      deps: [AerobaseService]
     }
   ],
   bootstrap: [AppComponent]

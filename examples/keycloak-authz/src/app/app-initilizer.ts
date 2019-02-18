@@ -1,20 +1,20 @@
-import { KeycloakService, KeycloakEvent } from 'keycloak-angular';
+import { AerobaseService, AerobaseEvent } from 'aerobase-angular';
 
 import { environment } from '../environments/environment';
 import { EventStackService } from './core/services/event-stack.service';
 
 export function initializer(
-  keycloak: KeycloakService,
+  aerobase: AerobaseService,
   eventStackService: EventStackService
 ): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
-        keycloak.keycloakEvents$.subscribe(event => {
+        aerobase.aerobaseEvents$.subscribe(event => {
           eventStackService.triggerEvent(event);
         });
-        await keycloak.init({
-          config: environment.keycloak
+        await aerobase.init({
+          config: environment.aerobase
         });
         resolve();
       } catch (error) {

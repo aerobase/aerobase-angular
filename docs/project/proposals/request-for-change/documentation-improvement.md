@@ -23,13 +23,13 @@ The project needs a better documentation, including the API documentation, struc
 
 * Name: Mauricio Gemelli Vigolo
 * Created in: 2018-04-09
-* Github user: [mauriciovigolo](https://github.com/mauriciovigolo)
+* Github user: [aerobase](https://github.com/aerobase)
 
 ### <a name="his"></a> History
 
 |    Date    |                        User                         | Details                          |
 | :--------: | :-------------------------------------------------: | -------------------------------- |
-| 2018-04-09 | [mauriciovigolo](https://github.com/mauriciovigolo) | Initial version of this document |
+| 2018-04-09 | [aerobase](https://github.com/aerobase) | Initial version of this document |
 
 ## <a name="rta"></a> Reason to add
 
@@ -90,12 +90,12 @@ The API documentation will be generated automatically using the [jsdoc-to-markdo
 
 ### <a name="cmd"></a> Creation of Missing Documentation Files
 
-The library needs a better documentation regarding the setup, config of keycloak and keycloak-js file, compatibility list and frequently asked questions.
+The library needs a better documentation regarding the setup, config of aerobase and keycloak-js file, compatibility list and frequently asked questions.
 The following files will be created:
 
 * getting-started - general infos about the library and how to install, setup the application.
-* keycloak-general-info - infos regarding the keycloak, for example: how to create an instance using docker or downloading the library. Links to the official documentation.
-* keycloak-compatibility-list - List of keycloak versions that this is library is compatible with.
+* aerobase-general-info - infos regarding the aerobase, for example: how to create an instance using docker or downloading the library. Links to the official documentation.
+* aerobase-compatibility-list - List of aerobase versions that this is library is compatible with.
 * faq - frequently asked questions on github issues.
 * full-library-documentation - full documentation about all the services, interceptors and library info.
 
@@ -112,6 +112,6 @@ The documentation must have a cover page with the project logo and a nice backgr
 
 The project must have a .github folder to add the following files:
 
-* ISSUE_TEMPLATE.md - template for the issues that will be opened in the future. A good issue must include the angular, keycloak-angular, keycloak-js versions as well as a project (source) with the user is having problems with the configuration.
+* ISSUE_TEMPLATE.md - template for the issues that will be opened in the future. A good issue must include the angular, aerobase-angular, keycloak-js versions as well as a project (source) with the user is having problems with the configuration.
 * PULL_REQUEST_TEMPLATE.md - template for the pull requests.
 * stale.yml - contains the maximum period of time that the project will allow an issue to be opened in the case of inactivity.

@@ -3,23 +3,23 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 import { TestBed, inject } from '@angular/core/testing';
 
-import { KeycloakService } from './keycloak.service';
+import { AerobaseService } from './aerobase.service';
 
-describe('KeycloakService', () => {
+describe('AerobaseService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [KeycloakService]
+      providers: [AerobaseService]
     });
   });
 
   it(
     'should be created',
-    inject([KeycloakService], (service: KeycloakService) => {
+    inject([AerobaseService], (service: AerobaseService) => {
       expect(service).toBeTruthy();
     })
   );

@@ -2,7 +2,7 @@ import { fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { KeycloakService } from 'keycloak-angular';
+import { AerobaseService } from 'aerobase-angular';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
       TestBed.configureTestingModule({
         declarations: [AppComponent],
         imports: [MatButtonModule, MatIconModule, MatCardModule],
-        providers: [KeycloakService]
+        providers: [AerobaseService]
       }).compileComponents();
 
       fixture = TestBed.createComponent(AppComponent);

@@ -17,13 +17,13 @@ Change of the project structure to the **@angular/cli** format, following the **
 
 * Name: Mauricio Gemelli Vigolo
 * Date: 2018-05-06
-* Github user: [mauriciovigolo](https://github.com/mauriciovigolo)
+* Github user: [aerobase](https://github.com/aerobase)
 
 ### <a name="his"></a> History
 
 |    Date    |                        User                         | Details                          |
 | :--------: | :-------------------------------------------------: | -------------------------------- |
-| 2018-05-06 | [mauriciovigolo](https://github.com/mauriciovigolo) | Initial version of this document |
+| 2018-05-06 | [aerobase](https://github.com/aerobase) | Initial version of this document |
 
 ## <a name="rta"></a> Reason to add
 
@@ -37,7 +37,7 @@ are missing in the project. The reasons to change to the angular cli project str
 
 ## <a name="imd"></a> Implementation Details
 
-The keycloak-angular project will be recreated using the angular cli tool. Then all the current features/implementations will be migrated to the new structure.
+The aerobase-angular project will be recreated using the angular cli tool. Then all the current features/implementations will be migrated to the new structure.
 
 The new folder structure is specified bellow:
 
@@ -57,7 +57,7 @@ The new folder structure is specified bellow:
 │   │   │   ├── done                    # Proposals incorporated to the project
 ├── examples                            # Project examples folder
 ├── projects                            # Custom developed angular library projects
-│   ├── keycloak-angular                # keycloak-angular library sources
+│   ├── aerobase-angular                # aerobase-angular library sources
 ```
 
 ### Folders details:
@@ -81,9 +81,9 @@ The new folder structure is specified bellow:
 
 #### examples
 
-* keycloak-heroes: shows a simple keycloak-angular configuration in an angular. It's consuming an external REST API service from [Open Dota]
-* keycloak-events: example that shows how to use the keycloak-js events in an angular project.
+* aerobase-heroes: shows a simple aerobase-angular configuration in an angular. It's consuming an external REST API service from [Open Dota]
+* aerobase-events: example that shows how to use the keycloak-js events in an angular project.
 
 #### projects
 
-* keycloak-angular: library src files.
+* aerobase-angular: library src files.

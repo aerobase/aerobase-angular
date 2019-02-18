@@ -1,6 +1,6 @@
 # Proposal: Examples changes
 
-The current example - keycloak-heroes needs to be updated to the newest angular, keycloak and keycloak-angular versions. A new example will be created, showing how to handle the keycloak events in an angular application.
+The current example - aerobase-heroes needs to be updated to the newest angular, aerobase and aerobase-angular versions. A new example will be created, showing how to handle the aerobase events in an angular application.
 
 ---
 
@@ -17,13 +17,13 @@ The current example - keycloak-heroes needs to be updated to the newest angular,
 
 * Name: Mauricio Gemelli Vigolo
 * Date: 2018-05-08
-* Github user: [mauriciovigolo](https://github.com/mauriciovigolo)
+* Github user: [aerobase](https://github.com/aerobase)
 
 ### <a name="his"></a> History
 
 |    Date    |                        User                         | Details                          |
 | :--------: | :-------------------------------------------------: | -------------------------------- |
-| 2018-05-08 | [mauriciovigolo](https://github.com/mauriciovigolo) | Initial version of this document |
+| 2018-05-08 | [aerobase](https://github.com/aerobase) | Initial version of this document |
 
 ## <a name="rta"></a> Reason to add
 

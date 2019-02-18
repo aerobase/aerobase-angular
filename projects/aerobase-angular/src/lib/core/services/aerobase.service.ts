@@ -3,7 +3,7 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 import { Injectable } from '@angular/core';
@@ -11,29 +11,29 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 
 // Workaround for rollup library behaviour, as pointed out on issue #1267 (https://github.com/rollup/rollup/issues/1267).
-import * as Keycloak_ from 'keycloak-js';
-export const Keycloak = Keycloak_;
+import * as Aerobase_ from 'keycloak-js';
+export const Aerobase = Aerobase_;
 
 import { Observable, Observer, Subject } from 'rxjs';
 
-import { KeycloakOptions } from '../interfaces/keycloak-options';
-import { KeycloakEvent, KeycloakEventType } from '../interfaces/keycloak-event';
+import { AerobaseOptions } from '../interfaces/aerobase-options';
+import { AerobaseEvent, AerobaseEventType } from '../interfaces/aerobase-event';
 
 /**
- * Service to expose existent methods from the Keycloak JS adapter, adding new
- * functionalities to improve the use of keycloak in Angular v > 4.3 applications.
+ * Service to expose existent methods from the Aerobase JS adapter, adding new
+ * functionalities to improve the use of aerobase in Angular v > 4.3 applications.
  *
  * This class should be injected in the application bootstrap, so the same instance will be used
  * along the web application.
  */
 @Injectable()
-export class KeycloakService {
+export class AerobaseService {
   /**
    * Keycloak-js instance.
    */
   private _instance: Keycloak.KeycloakInstance;
   /**
-   * User profile as KeycloakProfile interface.
+   * User profile as AerobaseProfile interface.
    */
   private _userProfile: Keycloak.KeycloakProfile;
   /**
@@ -46,7 +46,7 @@ export class KeycloakService {
    */
   private _silentRefresh: boolean;
   /**
-   * Indicates that the user profile should be loaded at the keycloak initialization,
+   * Indicates that the user profile should be loaded at the aerobase initialization,
    * just after the login.
    */
   private _loadUserProfileAtStartUp: boolean;
@@ -59,61 +59,61 @@ export class KeycloakService {
    */
   private _authorizationHeaderName: string;
   /**
-   * The excluded urls patterns that must skip the KeycloakBearerInterceptor.
+   * The excluded urls patterns that must skip the AerobaseBearerInterceptor.
    */
   private _bearerExcludedUrls: string[];
   /**
-   * Observer for the keycloak events
+   * Observer for the aerobase events
    */
-  private _keycloakEvents$: Subject<KeycloakEvent>;
+  private _aerobaseEvents$: Subject<AerobaseEvent>;
 
   constructor() {
-    this._keycloakEvents$ = new Subject<KeycloakEvent>();
+    this._aerobaseEvents$ = new Subject<AerobaseEvent>();
   }
 
   /**
-   * Binds the keycloak-js events to the keycloakEvents Subject
+   * Binds the keycloak-js events to the aerobaseEvents Subject
    * which is a good way to monitor for changes, if needed.
    *
-   * The keycloakEvents returns the keycloak-js event type and any
+   * The aerobaseEvents returns the keycloak-js event type and any
    * argument if the source function provides any.
    */
-  private bindsKeycloakEvents(): void {
+  private bindsAerobaseEvents(): void {
     this._instance.onAuthError = errorData => {
-      this._keycloakEvents$.next({
+      this._aerobaseEvents$.next({
         args: errorData,
-        type: KeycloakEventType.OnAuthError
+        type: AerobaseEventType.OnAuthError
       });
     };
 
     this._instance.onAuthLogout = () => {
-      this._keycloakEvents$.next({ type: KeycloakEventType.OnAuthLogout });
+      this._aerobaseEvents$.next({ type: AerobaseEventType.OnAuthLogout });
     };
 
     this._instance.onAuthRefreshSuccess = () => {
-      this._keycloakEvents$.next({
-        type: KeycloakEventType.OnAuthRefreshSuccess
+      this._aerobaseEvents$.next({
+        type: AerobaseEventType.OnAuthRefreshSuccess
       });
     };
 
     this._instance.onAuthRefreshError = () => {
-      this._keycloakEvents$.next({
-        type: KeycloakEventType.OnAuthRefreshError
+      this._aerobaseEvents$.next({
+        type: AerobaseEventType.OnAuthRefreshError
       });
     };
 
     this._instance.onAuthSuccess = () => {
-      this._keycloakEvents$.next({ type: KeycloakEventType.OnAuthSuccess });
+      this._aerobaseEvents$.next({ type: AerobaseEventType.OnAuthSuccess });
     };
 
     this._instance.onTokenExpired = () => {
-      this._keycloakEvents$.next({ type: KeycloakEventType.OnTokenExpired });
+      this._aerobaseEvents$.next({ type: AerobaseEventType.OnTokenExpired });
     };
 
     this._instance.onReady = authenticated => {
-      this._keycloakEvents$.next({
+      this._aerobaseEvents$.next({
         args: authenticated,
-        type: KeycloakEventType.OnReady
+        type: AerobaseEventType.OnReady
       });
     };
   }
@@ -147,7 +147,7 @@ export class KeycloakService {
     authorizationHeaderName = 'Authorization',
     bearerPrefix = 'bearer',
     initOptions
-  }: KeycloakOptions): void {
+  }: AerobaseOptions): void {
     this._enableBearerInterceptor = enableBearerInterceptor;
     this._loadUserProfileAtStartUp = loadUserProfileAtStartUp;
     this._bearerExcludedUrls = bearerExcludedUrls;
@@ -157,15 +157,15 @@ export class KeycloakService {
   }
 
   /**
-   * Keycloak initialization. It should be called to initialize the adapter.
+   * Aerobase initialization. It should be called to initialize the adapter.
    * Options is a object with 2 main parameters: config and initOptions. The first one
-   * will be used to create the Keycloak instance. The second one are options to initialize the
-   * keycloak instance.
+   * will be used to create the Aerobase instance. The second one are options to initialize the
+   * aerobase instance.
    *
    * @param options
-   * Config: may be a string representing the keycloak URI or an object with the
+   * Config: may be a string representing the aerobase URI or an object with the
    * following content:
-   * - url: Keycloak json URL
+   * - url: Aerobase json URL
    * - realm: realm name
    * - clientId: client id
    *
@@ -175,13 +175,13 @@ export class KeycloakService {
    * - token: Set an initial value for the token.
    * - refreshToken: Set an initial value for the refresh token.
    * - idToken: Set an initial value for the id token (only together with token or refreshToken).
-   * - timeSkew: Set an initial value for skew between local time and Keycloak server in seconds
+   * - timeSkew: Set an initial value for skew between local time and Aerobase server in seconds
    * (only together with token or refreshToken).
    * - checkLoginIframe: Set to enable/disable monitoring login state (default is true).
    * - checkLoginIframeInterval: Set the interval to check login state (default is 5 seconds).
-   * - responseMode: Set the OpenID Connect response mode send to Keycloak server at login
+   * - responseMode: Set the OpenID Connect response mode send to Aerobase server at login
    * request. Valid values are query or fragment . Default value is fragment, which means
-   * that after successful authentication will Keycloak redirect to javascript application
+   * that after successful authentication will Aerobase redirect to javascript application
    * with OpenID Connect parameters added in URL fragment. This is generally safer and
    * recommended over query.
    * - flow: Set the OpenID Connect flow. Valid values are standard, implicit or hybrid.
@@ -190,7 +190,7 @@ export class KeycloakService {
    * Flag to indicate if the bearer will added to the authorization header.
    *
    * loadUserProfileInStartUp:
-   * Indicates that the user profile should be loaded at the keycloak initialization,
+   * Indicates that the user profile should be loaded at the aerobase initialization,
    * just after the login.
    *
    * bearerExcludedUrls:
@@ -206,13 +206,13 @@ export class KeycloakService {
    * @returns
    * A Promise with a boolean indicating if the initialization was successful.
    */
-  init(options: KeycloakOptions = {}): Promise<boolean> {
+  init(options: AerobaseOptions = {}): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.initServiceValues(options);
       const { config, initOptions } = options;
 
-      this._instance = Keycloak(config);
-      this.bindsKeycloakEvents();
+      this._instance = Aerobase(config);
+      this.bindsAerobaseEvents();
       this._instance
         .init(initOptions)
         .success(async authenticated => {
@@ -222,7 +222,7 @@ export class KeycloakService {
           resolve(authenticated);
         })
         .error(kcError => {
-          let msg = 'An error happened during Keycloak initialization.';
+          let msg = 'An error happened during Aerobase initialization.';
           if (kcError) {
             let { error, error_description } = kcError;
             msg = msg.concat(
@@ -241,7 +241,7 @@ export class KeycloakService {
    * @param options
    * Object, where:
    *  - redirectUri: Specifies the uri to redirect to after login.
-   *  - prompt:By default the login screen is displayed if the user is not logged-in to Keycloak.
+   *  - prompt:By default the login screen is displayed if the user is not logged-in to Aerobase.
    * To only authenticate to the application if the user is already logged-in and not display the
    * login page if the user is not logged-in, set this option to none. To always require
    * re-authentication and ignore SSO, set this option to login .
@@ -424,7 +424,7 @@ export class KeycloakService {
       }
 
       if (!this._instance) {
-        reject('Keycloak Angular library is not initialized.');
+        reject('Aerobase Angular library is not initialized.');
         return;
       }
 
@@ -447,7 +447,7 @@ export class KeycloakService {
    * @param forceReload
    * If true will force the loadUserProfile even if its already loaded.
    * @returns
-   * A promise with the KeycloakProfile data loaded.
+   * A promise with the AerobaseProfile data loaded.
    */
   loadUserProfile(
     forceReload: boolean = false
@@ -520,7 +520,7 @@ export class KeycloakService {
    * If the headers param is undefined it will create the Angular headers object.
    *
    * @param headers
-   * Updated header with Authorization and Keycloak token.
+   * Updated header with Authorization and Aerobase token.
    * @returns
    * An observable with with the HTTP Authorization header and the current token.
    */
@@ -545,13 +545,13 @@ export class KeycloakService {
   }
 
   /**
-   * Returns the original Keycloak instance, if you need any customization that
+   * Returns the original Aerobase instance, if you need any customization that
    * this Angular service does not support yet. Use with caution.
    *
    * @returns
-   * The KeycloakInstance from keycloak-js.
+   * The AerobaseInstance from keycloak-js.
    */
-  getKeycloakInstance(): Keycloak.KeycloakInstance {
+  getAerobaseInstance(): Keycloak.KeycloakInstance {
     return this._instance;
   }
 
@@ -560,7 +560,7 @@ export class KeycloakService {
    * the http interceptor which automatically adds the authorization header in the Http Request.
    *
    * @returns
-   * The excluded urls that must not be intercepted by the KeycloakBearerInterceptor.
+   * The excluded urls that must not be intercepted by the AerobaseBearerInterceptor.
    */
   get bearerExcludedUrls(): string[] {
     return this._bearerExcludedUrls;
@@ -577,9 +577,9 @@ export class KeycloakService {
   }
 
   /**
-   * Keycloak subject to monitor the events triggered by keycloak-js.
-   * The following events as available (as described at keycloak docs -
-   * https://www.keycloak.org/docs/latest/securing_apps/index.html#callback-events):
+   * Aerobase subject to monitor the events triggered by keycloak-js.
+   * The following events as available (as described at aerobase docs -
+   * https://www.aerobase.org/docs/latest/securing_apps/index.html#callback-events):
    * - OnAuthError
    * - OnAuthLogout
    * - OnAuthRefreshError
@@ -588,14 +588,14 @@ export class KeycloakService {
    * - OnReady
    * - OnTokenExpire
    * In each occurrence of any of these, this subject will return the event type,
-   * described at {@link KeycloakEventType} enum and the function args from the keycloak-js
+   * described at {@link AerobaseEventType} enum and the function args from the keycloak-js
    * if provided any.
    *
    * @returns
-   * A subject with the {@link KeycloakEvent} which describes the event type and attaches the
+   * A subject with the {@link AerobaseEvent} which describes the event type and attaches the
    * function args.
    */
-  get keycloakEvents$(): Subject<KeycloakEvent> {
-    return this._keycloakEvents$;
+  get aerobaseEvents$(): Subject<AerobaseEvent> {
+    return this._aerobaseEvents$;
   }
 }

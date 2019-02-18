@@ -3,7 +3,7 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files

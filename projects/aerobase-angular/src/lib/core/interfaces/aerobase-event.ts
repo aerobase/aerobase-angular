@@ -3,14 +3,14 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 /**
- * Keycloak event types, as described at the keycloak-js documentation:
- * https://www.keycloak.org/docs/latest/securing_apps/index.html#callback-events
+ * Aerobase event types, as described at the keycloak-js documentation:
+ * https://www.aerobase.org/docs/latest/securing_apps/index.html#callback-events
  */
-export enum KeycloakEventType {
+export enum AerobaseEventType {
   /**
    * Called if there was an error during authentication.
    */
@@ -45,14 +45,14 @@ export enum KeycloakEventType {
 }
 
 /**
- * Structure of an event triggered by Keycloak, contains it's type
+ * Structure of an event triggered by Aerobase, contains it's type
  * and arguments (if any).
  */
-export interface KeycloakEvent {
+export interface AerobaseEvent {
   /**
-   * Event type as described at {@link KeycloakEventType}.
+   * Event type as described at {@link AerobaseEventType}.
    */
-  type: KeycloakEventType;
+  type: AerobaseEventType;
   /**
    * Arguments from the keycloak-js event function.
    */

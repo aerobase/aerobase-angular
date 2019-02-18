@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { KeycloakProfile } from 'keycloak-js';
-import { KeycloakService } from 'keycloak-angular';
+import { AerobaseProfile } from 'keycloak-js';
+import { AerobaseService } from 'aerobase-angular';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +8,17 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  userDetails: KeycloakProfile;
+  userDetails: AerobaseProfile;
 
-  constructor(private keycloakService: KeycloakService) {}
+  constructor(private aerobaseService: AerobaseService) {}
 
   async ngOnInit() {
-    if (await this.keycloakService.isLoggedIn()) {
-      this.userDetails = await this.keycloakService.loadUserProfile();
+    if (await this.aerobaseService.isLoggedIn()) {
+      this.userDetails = await this.aerobaseService.loadUserProfile();
     }
   }
 
   async doLogout() {
-    await this.keycloakService.logout();
+    await this.aerobaseService.logout();
   }
 }

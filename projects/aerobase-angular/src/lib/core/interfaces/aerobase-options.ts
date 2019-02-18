@@ -3,29 +3,29 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
-import { KeycloakInitOptions } from './keycloak-init-options';
-import { KeycloakConfig } from './keycloak-config';
+import { AerobaseInitOptions } from './aerobase-init-options';
+import { AerobaseConfig } from './aerobase-config';
 
 /**
- * keycloak-angular initialization options.
+ * aerobase-angular initialization options.
  */
-export interface KeycloakOptions {
+export interface AerobaseOptions {
   /**
-   * Configs to init the keycloak-js library. If undefined, will look for a keycloak.json file
+   * Configs to init the keycloak-js library. If undefined, will look for a aerobase.json file
    * at root of the project.
-   * If not undefined, can be a string meaning the url to the keycloak.json file or an object
-   * of {@link KeycloakConfig}. Use this configuration if you want to specify the keycloak server,
+   * If not undefined, can be a string meaning the url to the aerobase.json file or an object
+   * of {@link AerobaseConfig}. Use this configuration if you want to specify the aerobase server,
    * realm, clientId. This is usefull if you have different configurations for production, stage
    * and development environments. Hint: Make use of Angular environment configuration.
    */
-  config?: string | KeycloakConfig;
+  config?: string | AerobaseConfig;
   /**
    * Options to initialize the adapter. Used by keycloak-js.
    */
-  initOptions?: KeycloakInitOptions;
+  initOptions?: AerobaseInitOptions;
   /**
    * By default all requests made by Angular HttpClient will be intercepted in order to
    * add the bearer in the Authorization Http Header. However, if this is a not desired
@@ -38,7 +38,7 @@ export interface KeycloakOptions {
    */
   enableBearerInterceptor?: boolean;
   /**
-   * Forces the execution of loadUserProfile after the keycloak initialization considering that the
+   * Forces the execution of loadUserProfile after the aerobase initialization considering that the
    * user logged in.
    * This option is recommended if is desirable to have the user details at the beginning,
    * so after the login, the loadUserProfile function will be called and it's value cached.
@@ -65,7 +65,7 @@ export interface KeycloakOptions {
    * If any other value is needed by the backend in the authorization header, you should change this
    * value, i.e: **Bearer**.
    *
-   * Warning: this value must be in compliance with the keycloak server instance and the adapter.
+   * Warning: this value must be in compliance with the aerobase server instance and the adapter.
    */
   bearerPrefix?: string;
 }

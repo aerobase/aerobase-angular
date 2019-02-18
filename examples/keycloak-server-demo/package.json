@@ -1,7 +1,7 @@
 {
-  "name": "keycloak-server",
+  "name": "aerobase-server",
   "version": "1.0.0",
-  "description": "Server Examples For Keycloak Angular",
+  "description": "Server Examples For Aerobase Angular",
   "main": "./src/index.js",
   "scripts": {
     "start": "node_modules/.bin/nodemon src/index.js --exec babel-node --presets env",

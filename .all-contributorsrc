@@ -1,6 +1,6 @@
 {
-  "projectName": "keycloak-angular",
-  "projectOwner": "mauriciovigolo",
+  "projectName": "aerobase-angular",
+  "projectOwner": "aerobase",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
@@ -34,10 +34,10 @@
       ]
     },
     {
-      "login": "mauriciovigolo",
+      "login": "aerobase",
       "name": "Mauricio Gemelli Vigolo",
       "avatar_url": "https://avatars3.githubusercontent.com/u/676270?v=4",
-      "profile": "https://github.com/mauriciovigolo",
+      "profile": "https://github.com/aerobase",
       "contributions": [
       ]
     },

@@ -4,7 +4,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
 
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { AerobaseAngularModule, AerobaseService } from 'aerobase-angular';
 
 import { AppComponent } from './app.component';
 import { initializer } from './app-initilizer';
@@ -20,7 +20,7 @@ import { EventStackService } from './core/services/event-stack.service';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    KeycloakAngularModule,
+    AerobaseAngularModule,
     CoreModule
   ],
   providers: [
@@ -28,7 +28,7 @@ import { EventStackService } from './core/services/event-stack.service';
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
-      deps: [KeycloakService, EventStackService]
+      deps: [AerobaseService, EventStackService]
     }
   ],
   bootstrap: [AppComponent]

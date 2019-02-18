@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "keycloak-angular": {
-      "root": "projects/keycloak-angular",
-      "sourceRoot": "projects/keycloak-angular/src",
+    "aerobase-angular": {
+      "root": "projects/aerobase-angular",
+      "sourceRoot": "projects/aerobase-angular/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/keycloak-angular/tsconfig.lib.json",
-            "project": "projects/keycloak-angular/ng-package.json"
+            "tsConfig": "projects/aerobase-angular/tsconfig.lib.json",
+            "project": "projects/aerobase-angular/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/keycloak-angular/ng-package.prod.json"
+              "project": "projects/aerobase-angular/ng-package.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/keycloak-angular/src/test.ts",
-            "tsConfig": "projects/keycloak-angular/tsconfig.spec.json",
-            "karmaConfig": "projects/keycloak-angular/karma.conf.js"
+            "main": "projects/aerobase-angular/src/test.ts",
+            "tsConfig": "projects/aerobase-angular/tsconfig.spec.json",
+            "karmaConfig": "projects/aerobase-angular/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/keycloak-angular/tsconfig.lib.json",
-              "projects/keycloak-angular/tsconfig.spec.json"
+              "projects/aerobase-angular/tsconfig.lib.json",
+              "projects/aerobase-angular/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -42,5 +42,5 @@
       }
     }
   },
-  "defaultProject": "keycloak-angular"
+  "defaultProject": "aerobase-angular"
 }

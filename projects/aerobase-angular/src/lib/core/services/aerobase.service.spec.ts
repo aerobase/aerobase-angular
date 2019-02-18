@@ -3,31 +3,31 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 import { TestBed, inject } from '@angular/core/testing';
 
-import { KeycloakService } from './keycloak.service';
+import { AerobaseService } from './aerobase.service';
 
-describe('KeycloakService', () => {
+describe('AerobaseService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [KeycloakService]
+      providers: [AerobaseService]
     });
   });
 
   it('Should be created', inject(
-    [KeycloakService],
-    (service: KeycloakService) => {
+    [AerobaseService],
+    (service: AerobaseService) => {
       expect(service).toBeTruthy();
     }
   ));
 
   describe('#loadExcludedUrls', () => {
     it('Should create the ExcludedUrlRegex objects if the bearerExcludedUrls arg is a string array', inject(
-      [KeycloakService],
-      (service: KeycloakService) => {
+      [AerobaseService],
+      (service: AerobaseService) => {
         const loadExcludedUrls = service['loadExcludedUrls'];
         const result = loadExcludedUrls(['home', 'public']);
         let { urlPattern, httpMethods } = result[0];
@@ -40,8 +40,8 @@ describe('KeycloakService', () => {
     ));
 
     it('Should create the ExcludedUrlRegex objects if the bearerExcludedUrls arg is an mixed array of strings and ExcludedUrl objects', inject(
-      [KeycloakService],
-      (service: KeycloakService) => {
+      [AerobaseService],
+      (service: AerobaseService) => {
         const loadExcludedUrls = service['loadExcludedUrls'];
         const result = loadExcludedUrls([
           'home',

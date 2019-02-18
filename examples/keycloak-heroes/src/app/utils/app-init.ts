@@ -1,13 +1,13 @@
-import { KeycloakService } from 'keycloak-angular';
+import { AerobaseService } from 'aerobase-angular';
 
 import { environment } from '../../environments/environment';
 
-export function initializer(keycloak: KeycloakService): () => Promise<any> {
+export function initializer(aerobase: AerobaseService): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise(async (resolve, reject) => {
       try {
-        await keycloak.init({
-          config: environment.keycloak,
+        await aerobase.init({
+          config: environment.aerobase,
           initOptions: {
             onLoad: 'login-required',
             checkLoginIframe: false

@@ -3,34 +3,34 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 /**
- * Keycloak onload options: 'login-required' or 'check-sso'
+ * Aerobase onload options: 'login-required' or 'check-sso'
  */
-export type KeycloakOnLoad = 'login-required' | 'check-sso';
+export type AerobaseOnLoad = 'login-required' | 'check-sso';
 /**
- * Keycloak response mode options: 'query' or 'fragment'
+ * Aerobase response mode options: 'query' or 'fragment'
  */
-export type KeycloakResponseMode = 'query' | 'fragment';
+export type AerobaseResponseMode = 'query' | 'fragment';
 /**
- * Keycloak response type options: 'code' or 'id_token token' or 'code id_token token'
+ * Aerobase response type options: 'code' or 'id_token token' or 'code id_token token'
  */
-export type KeycloakResponseType = 'code' | 'id_token token' | 'code id_token token';
+export type AerobaseResponseType = 'code' | 'id_token token' | 'code id_token token';
 /**
- * Keycloak flow: 'standard' or 'implicit' or 'hybrid'
+ * Aerobase flow: 'standard' or 'implicit' or 'hybrid'
  */
-export type KeycloakFlow = 'standard' | 'implicit' | 'hybrid';
+export type AerobaseFlow = 'standard' | 'implicit' | 'hybrid';
 
 /**
- * Definitions file from KeycloakInitOptions, from keycloak-js library.
+ * Definitions file from AerobaseInitOptions, from keycloak-js library.
  */
-export interface KeycloakInitOptions {
+export interface AerobaseInitOptions {
   /**
    * Specifies an action to do on load.
    */
-  onLoad?: KeycloakOnLoad;
+  onLoad?: AerobaseOnLoad;
   /**
    * Set an initial value for the token.
    */
@@ -45,7 +45,7 @@ export interface KeycloakInitOptions {
    */
   idToken?: string;
   /**
-   * Set an initial value for skew between local time and Keycloak server in
+   * Set an initial value for skew between local time and Aerobase server in
    * seconds (only together with `token` or `refreshToken`).
    */
   timeSkew?: number;
@@ -60,16 +60,16 @@ export interface KeycloakInitOptions {
    */
   checkLoginIframeInterval?: number | any;
   /**
-   * Set the OpenID Connect response mode to send to Keycloak upon login.
-   * @default fragment After successful authentication Keycloak will redirect
+   * Set the OpenID Connect response mode to send to Aerobase upon login.
+   * @default fragment After successful authentication Aerobase will redirect
    *                   to JavaScript application with OpenID Connect parameters
    *                   added in URL fragment. This is generally safer and
    *                   recommended over query.
    */
-  responseMode?: KeycloakResponseMode;
+  responseMode?: AerobaseResponseMode;
   /**
    * Set the OpenID Connect flow.
    * @default standard
    */
-  flow?: KeycloakFlow;
+  flow?: AerobaseFlow;
 }

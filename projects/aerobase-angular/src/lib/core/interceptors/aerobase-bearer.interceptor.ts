@@ -3,7 +3,7 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 import { Injectable } from '@angular/core';
@@ -17,18 +17,18 @@ import {
 import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { KeycloakService } from '../services/keycloak.service';
-import { ExcludedUrlRegex } from '../interfaces/keycloak-options';
+import { AerobaseService } from '../services/aerobase.service';
+import { ExcludedUrlRegex } from '../interfaces/aerobase-options';
 
 /**
  * This interceptor includes the bearer by default in all HttpClient requests.
  *
  * If you need to exclude some URLs from adding the bearer, please, take a look
- * at the {@link KeycloakOptions} bearerExcludedUrls property.
+ * at the {@link AerobaseOptions} bearerExcludedUrls property.
  */
 @Injectable()
-export class KeycloakBearerInterceptor implements HttpInterceptor {
-  constructor(private keycloak: KeycloakService) {}
+export class AerobaseBearerInterceptor implements HttpInterceptor {
+  constructor(private aerobase: AerobaseService) {}
 
   /**
    * Checks if the url is excluded from having the Bearer Authorization
@@ -62,7 +62,7 @@ export class KeycloakBearerInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const { enableBearerInterceptor, excludedUrls } = this.keycloak;
+    const { enableBearerInterceptor, excludedUrls } = this.aerobase;
     if (!enableBearerInterceptor) {
       return next.handle(req);
     }
@@ -73,7 +73,7 @@ export class KeycloakBearerInterceptor implements HttpInterceptor {
       return next.handle(req);
     }
 
-    return this.keycloak.addTokenToHeader(req.headers).pipe(
+    return this.aerobase.addTokenToHeader(req.headers).pipe(
       mergeMap(headersWithBearer => {
         const kcReq = req.clone({ headers: headersWithBearer });
         return next.handle(kcReq);

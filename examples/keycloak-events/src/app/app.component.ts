@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SafeStyle } from '@angular/platform-browser';
-import { KeycloakService, KeycloakEventType } from 'keycloak-angular';
+import { AerobaseService, AerobaseEventType } from 'aerobase-angular';
 
 import { EventStackService } from './core/services/event-stack.service';
 
@@ -13,12 +13,12 @@ import { EventStackService } from './core/services/event-stack.service';
 export class AppComponent implements OnInit {
   private readonly _usualEventMessage: string = 'Waiting for events from keycloak-js';
 
-  keycloakEvent: string;
+  aerobaseEvent: string;
   eventStatus: string;
   eventImg: SafeStyle;
 
   constructor(
-    private _keycloakService: KeycloakService,
+    private _aerobaseService: AerobaseService,
     private _eventStackService: EventStackService
   ) {}
 
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   }
 
   private notifyEvent(event: string, msg: string, level: 'info' | 'warn' | 'error') {
-    this.keycloakEvent = event;
+    this.aerobaseEvent = event;
     this.eventImg = this.changeMarioReaction(true);
 
     setTimeout(() => {
@@ -39,27 +39,27 @@ export class AppComponent implements OnInit {
     }, 5000);
   }
 
-  private keycloakEventTriggered({ _id, event }): void {
+  private aerobaseEventTriggered({ _id, event }): void {
     switch (event.type) {
-      case KeycloakEventType.OnAuthError:
+      case AerobaseEventType.OnAuthError:
         this.notifyEvent('Auth Error', 'Msg', 'error');
         break;
-      case KeycloakEventType.OnAuthLogout:
+      case AerobaseEventType.OnAuthLogout:
         this.notifyEvent('Auth Logout', 'Msg', 'warn');
         break;
-      case KeycloakEventType.OnAuthRefreshError:
+      case AerobaseEventType.OnAuthRefreshError:
         this.notifyEvent('Auth Refresh Error', 'Msg', 'error');
         break;
-      case KeycloakEventType.OnAuthRefreshSuccess:
+      case AerobaseEventType.OnAuthRefreshSuccess:
         this.notifyEvent('Auth Refresh Success', 'Msg', 'info');
         break;
-      case KeycloakEventType.OnAuthSuccess:
+      case AerobaseEventType.OnAuthSuccess:
         this.notifyEvent('Auth Success', 'Msg', 'info');
         break;
-      case KeycloakEventType.OnReady:
+      case AerobaseEventType.OnReady:
         this.notifyEvent('On Ready', 'Msg', 'info');
         break;
-      case KeycloakEventType.OnTokenExpired:
+      case AerobaseEventType.OnTokenExpired:
         this.notifyEvent('Token Expired', 'Msg', 'warn');
         break;
       default:
@@ -74,13 +74,13 @@ export class AppComponent implements OnInit {
     this.eventImg = this.changeMarioReaction();
 
     this._eventStackService.eventTriggered$.subscribe(eventStack => {
-      eventStack.forEach(eventItem => this.keycloakEventTriggered(eventItem));
+      eventStack.forEach(eventItem => this.aerobaseEventTriggered(eventItem));
     });
 
-    this._eventStackService.eventStack.forEach(eventItem => this.keycloakEventTriggered(eventItem));
+    this._eventStackService.eventStack.forEach(eventItem => this.aerobaseEventTriggered(eventItem));
   }
 
   onLogin(): void {
-    this._keycloakService.login();
+    this._aerobaseService.login();
   }
 }

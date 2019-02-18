@@ -1,7 +1,7 @@
 // Docsify Setup
 window.$docsify = {
-  name: 'keycloak-angular',
-  repo: 'ssh://git@github.com/mauriciovigolo/keycloak-angular',
+  name: 'aerobase-angular',
+  repo: 'ssh://git@github.com/aerobase/aerobase-angular',
   auto2top: true,
   homepage: 'docs/en/README',
   alias: {},

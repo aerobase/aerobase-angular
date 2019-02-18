@@ -13,7 +13,7 @@ If you want to contribute to project here are the guidelines:
 
 ### For bugs
 
-If you find a bug you can help the project by submitting an issue to the [GitHub Repository](https://www.github.com/mauriciovigolo/keycloak-angular). You may also submit a Pull Request with the bug fix, but before, please check the project's coding rules and commit templates.
+If you find a bug you can help the project by submitting an issue to the [GitHub Repository](https://www.github.com/aerobase/aerobase-angular). You may also submit a Pull Request with the bug fix, but before, please check the project's coding rules and commit templates.
 
 ### Feature requests
 
@@ -25,7 +25,7 @@ Missing an important feature? Please open an issue for discussion. If you want t
 
 - Clone the forked repository
 ```sh
-git clone https://github.com/YOUR-USERNAME/keycloak-angular.git
+git clone https://github.com/YOUR-USERNAME/aerobase-angular.git
 ```
 
 - Install the dependencies
@@ -41,7 +41,7 @@ npm install
 
 Before submiting an issue, please search if there is an open issue for the same bug. A minimal reproduce scenario is necessary to help to understand the problem.
 
-For opening an issue, you can fill out this [issue form](https://github.com/mauriciovigolo/keycloak-angular/issues/new).
+For opening an issue, you can fill out this [issue form](https://github.com/aerobase/aerobase-angular/issues/new).
 
 ### Submitting a Pull Request (PR)
 

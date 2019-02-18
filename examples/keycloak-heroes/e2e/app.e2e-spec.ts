@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('keycloak-heroes App', () => {
+describe('aerobase-heroes App', () => {
   let page: AppPage;
 
   beforeEach(() => {

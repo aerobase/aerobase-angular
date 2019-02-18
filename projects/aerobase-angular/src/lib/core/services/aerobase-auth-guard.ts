@@ -3,12 +3,12 @@
  * Copyright Mauricio Gemelli Vigolo and contributors.
  *
  * Use of this source code is governed by a MIT-style license that can be
- * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
+ * found in the LICENSE file at https://github.com/aerobase/aerobase-angular/LICENSE
  */
 
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { KeycloakService } from './keycloak.service';
+import { AerobaseService } from './aerobase.service';
 
 /**
  * A simple guard implementation out of the box. This class should be inherited and
@@ -16,7 +16,7 @@ import { KeycloakService } from './keycloak.service';
  * The reason for this is that the authorization flow is usually not unique, so in this way you will
  * have more freedom to customize your authorization flow.
  */
-export abstract class KeycloakAuthGuard implements CanActivate {
+export abstract class AerobaseAuthGuard implements CanActivate {
   /**
    * Indicates if the user is authenticated or not.
    */
@@ -26,7 +26,7 @@ export abstract class KeycloakAuthGuard implements CanActivate {
    */
   protected roles: string[];
 
-  constructor(protected router: Router, protected keycloakAngular: KeycloakService) {}
+  constructor(protected router: Router, protected aerobaseAngular: AerobaseService) {}
 
   /**
    * CanActivate checks if the user is logged in and get the full list of roles (REALM + CLIENT)
@@ -38,8 +38,8 @@ export abstract class KeycloakAuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
       try {
-        this.authenticated = await this.keycloakAngular.isLoggedIn();
-        this.roles = await this.keycloakAngular.getUserRoles(true);
+        this.authenticated = await this.aerobaseAngular.isLoggedIn();
+        this.roles = await this.aerobaseAngular.getUserRoles(true);
 
         const result = await this.isAccessAllowed(route, state);
         resolve(result);
